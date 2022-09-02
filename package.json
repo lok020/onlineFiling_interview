@@ -1,0 +1,17 @@
+{
+  "name": "onlinefiling_interview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tasks": "nodemon tasks.js",
+    "projects": "nodemon projects.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongodb": "^4.9.1",
+    "nodemon": "^2.0.19"
+  }
+}

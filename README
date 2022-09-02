@@ -1,0 +1,78 @@
+- MongoDB Setup -
+1. create a new MongoDB database: “todoList”
+2. create a new MongoDB collection: tasks
+3. create a new MongoDB collection: projects
+4. run MongoDB on default path "mongodb://localhost:27017"
+
+
+- Usage -
+1. on terminal, find the location you stored the project, on the root of the project:
+a. RUN "npm run tasks" when tasks actions needed to be excute,
+b. RUN "npm run projects" when projects actions needed to be excute.
+
+2. open web browser of your choice, in the web address bar:
+a. TYPE "http://localhost:3001"
+b. or TYPE any path in .env file, named PORT
+
+3. based on the actions needed to be excute, add corresponding string behind the link your enter from the last step:
+a. ADD "/tasks/" if tasks actions needed to be excute
+b. ADD "/projects/" if projects actions needed to be excute
+
+4. there will be a welcome message on the browser.
+
+5. add different string in the path to do extensive actions
+a. for tasks:
+  - ADD "create", to create a task
+  - ADD "list", to list all tasks
+  - ADD "edit", to edit a task
+  - ADD "delete", to delete a task
+  - ADD "mark/done", to mark a task as done
+  - ADD "mark/to-do", to mark a task as to-do
+  - ADD "filter/done", to filter tasks by done status
+  - ADD "filter/to-do", to filter tasks by to-do status
+  - ADD "search", to search tasks by name
+  - ADD "sort/start_date", to sort tasks by start date
+  - ADD "sort/due_date", to sort tasks by due date
+  - ADD "sort/done_date", to sort tasks by done date
+b. for projects:
+  - ADD "create", to create a project
+  - ADD "list", to list all projects
+  - ADD "edit", to edit a project
+  - ADD "delete", to delete a project
+  - ADD "assign", to assign task(s) to a project
+  - ADD "filter", to filter task(s) by project name
+  - ADD "sort/start_date", to sort projects by start date
+  - ADD "sort/due_date", to sort projects by due date
+
+6. every task added, start_date will automatically added as now, and the due date automatically would be 7 days from now.
+
+- Edge Cases -
+a. for tasks:
+  - all input should have type checking
+    - name: String
+    - status: String (not boolean, because leave room to expend functionality, such as adding "pending", "scheduled", etc.)
+    - start_date: Date
+    - due_date: Date
+    - done_date: Date
+  - if nothing can be found / searched:
+    - nothing should be able to edit
+    - nothing should delete
+    - nothing should mark for done / to-do
+  - if edit field type are different type than the orginal type, nothing should be able to edit
+  - reset a task from “done” to “to-do”, should reset start_date, due_date, and done_date
+b. for projects:
+  - all input should have type checking
+    - name: String
+    - tasks: Array
+  - add task(s) into project should check for existence, avoid the same task in the same project
+  - move a task from project 1 to project 2 should:
+    - remove the task from project 1
+    - add the task to project 2
+    - if project 2 already have the task, remove task from project 1, and don't add on project 2
+    - if project 1 don't have the task needed to be move, ignore the action
+  - if no task can be found for the assign action, ignore the action
+
+
+- BOUNS -
+There are two aggregation for each projects and tasks collection in the aggregation.js. I tried to get them as close as it could.
+  
